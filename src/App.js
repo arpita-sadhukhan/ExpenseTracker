@@ -1,4 +1,5 @@
-import Expenses from "./Components/Expenses";
+import Expenses from "./Components/Expenses/Expenses";
+import NewExpense from "./Components/NewExpense/NewExpense";
 
 function App() {
 
@@ -22,9 +23,16 @@ function App() {
             expenseDate: new Date(2021, 2, 10)
         }
     ];
+    const populateExpenseData = (expenseData) => {
+        let expenseProps = {
+            ...expenseProp,
+            expenseData
+        }
+        console.log(expenseProps)
+    }
     return (
         <div>
-            <h2>Let's get started!</h2>
+            <NewExpense getExpenseData={populateExpenseData}/>
             <Expenses expenses={expenseProp}></Expenses>
         </div>
     );
