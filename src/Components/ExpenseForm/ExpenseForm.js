@@ -30,7 +30,10 @@ const ExpenseForm = (prop) => {
         })*/
     }
     const dateChangeHandler = (event) => {
+        console.log()
+
         setEnteredDate(event.target.value)
+
         /*setUserInput((prevState) => {
             return {
                 ...prevState,
@@ -40,11 +43,10 @@ const ExpenseForm = (prop) => {
     }
     const submitHandler = (event) => {
         event.preventDefault()
-        //const expenseData = userInput
         const expenseData = {
             title : enteredTitle,
             amount : enteredAmount,
-            date : enteredDate
+            expenseDate : new Date(enteredDate)
         }
         prop.onSaveExpenseData(expenseData)
         setEnteredTitle('')

@@ -1,39 +1,28 @@
 import Expenses from "./Components/Expenses/Expenses";
 import NewExpense from "./Components/NewExpense/NewExpense";
+import {useState} from 'react'
 
+const INITIAL_DATA = [
+    {
+        id: 1,
+        title: "Some Installment",
+        amount: 15000,
+        expenseDate: new Date(2021, 2, 28)
+    }
+];
 function App() {
 
-    const expenseProp = [
-        {
-            id: 1,
-            title: "Some Installment",
-            amount: 15000,
-            expenseDate: new Date(2021, 2, 28)
-        },
-        {
-            id: 2,
-            title: "Mutual Fund",
-            amount: 10000,
-            expenseDate: new Date(2021, 2, 20)
-        },
-        {
-            id: 3,
-            title: "PPF",
-            amount: 10000,
-            expenseDate: new Date(2021, 2, 10)
-        }
-    ];
+    const [expenses, setExpenses] = useState(INITIAL_DATA)
     const populateExpenseData = (expenseData) => {
-        let expenseProps = {
-            ...expenseProp,
-            expenseData
-        }
-        console.log(expenseProps)
+        setExpenses(prevExpenses => {
+            return [expenseData, ...prevExpenses]
+        })
+        console.log(expenses)
     }
     return (
         <div>
             <NewExpense getExpenseData={populateExpenseData}/>
-            <Expenses expenses={expenseProp}></Expenses>
+            <Expenses expenses={expenses}></Expenses>
         </div>
     );
 }
